@@ -1,0 +1,16 @@
+input{
+    width: 100%;
+    background-color: yellow;
+}
+
+tr{
+    width: 100%;
+}
+th{
+    width: 12%;
+}
+
+table{
+    border: 1px solid green;
+    width: 100%;
+}

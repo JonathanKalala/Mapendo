@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    <link rel="stylesheet" href="mapendo.css">
+</head>
+<body>
+    <div id="container">
+        <form method="POST">
+            <div class="ui inverted segment">
+                <div class="ui inverted form">
+                  <div class="two fields">
+                    <div class="field">
+                      <label>Nom</label>
+                      <input placeholder="ex : KALALA" type="text" id="nom">
+                    </div>
+                    <div class="field">
+                      <label>Prenom</label>
+                      <input placeholder="ex : Jonathan" type="text" id="prenom"> <br>
+                    </div>
+                    <div class="field">
+                        <label>Email</label>
+                        <input placeholder="Jonkal38@gmail.com" type="text" id="email"> <br>
+                      </div>
+                      <div class="field">
+                        <label>Age</label>
+                        <input placeholder="ex: 25" type="text" id="age"> <br>
+                      </div>
+                      <div class="field">
+                        <label>Poste</label>
+                        <input placeholder="ex: Directeur" type="text" id="poste"> <br>
+                      </div>
+                      <div class="field">
+                        <label>Numero de telephone</label>
+                        <input placeholder="+243852282012" type="text" id="numero"> <br>
+                      </div>
+                      <div class="field">
+                        <label>Statut marital</label>
+                        <input placeholder="ex : Celibataire" type="text" id="statut"> <br>
+                      </div>
+                      <div class="field">
+                        <label>Pays d'origine</label>
+                        <input placeholder="ex : Canada" type="text" id="pays"> <br>
+                      </div>
+                  </div>
+                  <div class="inline field">
+                    <div class="ui checkbox">
+                      <input type="checkbox" tabindex="0" class="hidden">
+                      <label>Termine ?</label>
+                    </div>
+                  </div>
+                  <div>
+                    <button class="ui submit button" id="bouton">Ajouter</button>
+                  </div>
+                </div>
+              </div>
+        </form>
+    </div>
+    <table border="1">
+        <tr>
+            <th>Nom</th>
+            <th>Prenom</th>
+            <th>Email</th>
+            <th>Age</th>
+            <th>Poste</th>
+            <th>Numero</th>
+            <th>Statut</th>
+            <th>Pays d'àrigine</th>
+
+        </tr>
+    </table>
+
+
+    <script src="mapendo.js"></script>
+</body>
+</html>
