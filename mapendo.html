@@ -7,6 +7,7 @@
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
     <link rel="stylesheet" href="mapendo.css">
+    <link rel="stylesheet" href="config.js">
 </head>
 <body>
     <div id="container">
@@ -30,19 +31,9 @@
                         <span id="spanEmail"></span>
                       </div>
                       <div class="field">
-                        <label>Age</label>
-                        <input placeholder="ex: 25" type="number" id="age" list="browsers" class="input"> <br>
-                        
-                        <span id="spanAge"></span>
-                      </div>
-                      <div class="field">
                         <label>Poste</label>
                         <!-- <input placeholder="ex: Directeur" type="text" id="poste"> <br> -->
-                        <select name="poste" id="poste" class="input">
-                          <option value="dg">dg</option>
-                          <option value="sec">sec</option>
-                          <option value="chef d'equipe">chef d'equipe</option>
-                        </select>
+                        <input name="poste" id="poste" class="input">
                         <span id="spanPoste"></span>
                       </div>
                       <div class="field">
@@ -51,39 +42,22 @@
                         <span id="spanNumero"></span>
                       </div>
                       <div class="field">
-                        <label>Statut marital</label>
-                        <!-- <input placeholder="ex : Celibataire" type="text" id="statut"> <br> -->
+                        <label>Est marié(e)</label>
                         <select name="poste" id="statut" class="input">
-                          <option value="Celibataire">Celibataire</option>
-                          <option value="Marie">Marie</option>
+                          <option value="Oui">Oui</option>
+                          <option value="Non">Non</option>
                         </select>
                         <span id="spanStatut"></span>
                       </div>
                       <div class="field">
                         <label>Pays d'origine</label>
                         <!-- <input placeholder="ex : Canada" type="text" id="pays"> <br> -->
-                        <select name="poste" id="pays" class="input">
-                          <optgroup label="Afique">
-                            <option value="RDC">RDC</option>
-                            <option value="Egypte">Egypte</option>
-                            <option value="Rwanda">Rwanda</option>
-                          </optgroup>
-                          <optgroup label="Europe">
-                            <option value="France">France</option>
-                            <option value="Belgique">Belgique</option>
-                            <option value="Suisse">Suisse</option>
-                          </optgroup>
-                          <optgroup label="Amerique">
-                            <option value="Canada">Canada</option>
-                            <option value="Mexique">Mexique</option>
-                            <option value="Argentine">Argentine</option>
-                          </optgroup>
-                        </select>
+                        <input name="poste" id="pays" class="input">
                         <span id="spanPays"></span>
                       </div>
                   </div>
-                  <input type="search" style="width: 100px;" name="recherche" id="recherche" placeholder="ex: 12">
-                  <label for="recherche">Veuillez saisir le matricule de l'agent pour modifier ou supprimer </label>
+                  <input type="search" style="width: 100px;" id="recherche" placeholder="ex: 5e72a48a33ac7a12f2e121a8">
+                  <label for="recherche">Veuillez saisir le matricule de l'agent pour supprimer ou modifier</label>
                   <div>
                     <button class="ui submit button" id="bouton">Ajouter</button>
                     <button class="ui submit button" id="boutonModifier">Modifier</button>
@@ -94,21 +68,24 @@
         </form>
     </div>
     <table border="1">
+      <thead>
         <tr>
             <th>Id</th>
             <th>Nom</th>
             <th>Prenom</th>
             <th>Email</th>
-            <th>Age</th>
             <th>Poste</th>
             <th>Numero</th>
             <th>Statut</th>
-            <th>Pays d'orgine</th>
-
+            <th>Pays d'àrigine</th>
         </tr>
+      </thead>
+      <tbody>
+        
+      </tbody>
     </table>
 
-
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="mapendo.js"></script>
 </body>
 </html>

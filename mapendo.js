@@ -38,48 +38,64 @@ let regex_text = /^[A-Z][a-z]+/;
 let regex_entier = /^[0-9][0-9]/;
 let regex_email = /@|com/;
 let regex_numero = /^\+[0-9]/;
-          
-for(i=0; i<input.length; i++){
-  input[i].value = "";
+
+
+function inputVide(){
+  for(i=0; i<input.length; i++){
+    input[i].value = "";
+  }
 }
+
+inputVide()
+
+function rechargerTableau(){
+  axios.get('http://167.71.45.243:4000/api/employes?api_key=yfryaep').then(function(response){
+    for(i=0; i<response.data.length; i++){
+      newTr = document.createElement("tr");
+      let td1 = document.createElement('td');
+      td1.append(response.data[i]._id);
+      let td2 = document.createElement('td');
+      td2.append(response.data[i].nom);
+      let td3 = document.createElement('td');
+      td3.append(response.data[i].prenom);
+      let td4 = document.createElement('td');
+      td4.append(response.data[i].email);
+      let td5 = document.createElement('td');
+      td5.append(response.data[i].poste);
+      let td6 = document.createElement('td');
+      td6.append(response.data[i].numeroTelephone);
+      let td7 = document.createElement('td');
+      td7.append(response.data[i].estMarie);
+      let td8 = document.createElement('td');
+      td8.append(response.data[i].pays)
+
+      newTr.append(td1, td2, td3, td4, td5, td6, td7, td8)
+      tbody.append(newTr)
+    }
+  })
+}
+
+rechargerTableau()
 
 btn.addEventListener('click', function(e){
     e.preventDefault()
       if(!nom.value.length){
         spanNom.textContent = "Nom vide"
         spanNom.style = "color:red";
-      } else if(regex_text.test(nom.value) == false){
-        spanNom.textContent = "Format nom incorrect";
-        spanNom.style = "color:red"
-      } else{
+      }else{
         spanNom.textContent = "";
       }
       if(!prenom.value.length){
         spanPrenom.textContent = "Prenom vide"
         spanPrenom.style = "color:red";
-      } else if(regex_text.test(prenom.value) == false){
-        spanPrenom.textContent = "Format prenom incorrect";
-        spanPrenom.style = "color : red";
-      } else{
+      }else{
         spanPrenom.textContent = "";
       }
       if(!email.value.length){
         spanEmail.textContent = "Email vide"
         spanEmail.style = "color:red";
-      } else if(regex_email.test(email.value) == false){
-        spanEmail.textContent = "Format email incorrect";
-        spanEmail.style = "color : red";
-      } else{
+      }else{
         spanEmail.textContent = "";
-      }
-      if(!age.value.length){
-        spanAge.textContent = "Age vide"
-        spanAge.style = "color:red";
-      } else if(age.value.length > 2 || regex_entier.test(age.value) == false){
-        spanAge.textContent = "Format age incorrect";
-        spanAge.style = "color:red";
-      } else{
-        spanAge.textContent = "";
       }
       if(!poste.value.length){
         spanPoste.textContent = "poste vide"
@@ -88,115 +104,120 @@ btn.addEventListener('click', function(e){
       if(!numero.value.length){
         spanNumero.textContent = "numero vide"
         spanNumero.style = "color:red";
-      } else if(numero.value.length > 14 || regex_numero.test(numero.value) == false){
-        spanNumero.textContent = "Numero incorret";
-        spanNumero.style = "color : red";
-      } else{
+      }else{
         spanNumero.textContent = '';
-      }
-      if(!statut.value.length){
-        spanStatut.textContent = "Nom vide"
-        spanStatut.style = "color:red";
       }
       if(!pays.value.length){
         spanPays.textContent = "pays vide"
         spanPays.style = "color:red";
       }
-      do{
-        id =  Math.floor(Math.random() * Math.floor(100))
-      } while(tabId.includes(id))
-      tabId.push(id)
-      
-    const obj = {
-        id:id,
+
+      const obj = {
         nom : nom.value,
         prenom : prenom.value,
         email : email.value,
-        age : age.value,
         poste : poste.value,
-        numero : numero.value,
-        statut : statut.value,
+        numeroTelephone : numero.value,
+        estMarie : statut.value=='Oui' ? true : false,
         pays : pays.value
     }
     users.push(obj)
-
-    if(recherche.value.length){
-      for(i=0; i<tro.length; i++){
-          if(tro[i].cells[0].textContent == recherche.value){
-            for(a=1; a<9; a++){
-              tro[i].cells[a].textContent = input[a-1].value;
-              input[a-1].value = "";
-            }
-          btnSupprimer.style.display = "inline";
-          btnModifier.style.display = "inline";
-          btn.textContent = "Ajouter";
-        }
-      }
-        
-      }else{
-        
-        if(nom.value.length && prenom.value.length && email.value.length && age.value.length && poste.value.length && numero.value.length && statut.value.length && pays.value.length){
-        newTr = document.createElement('tr')
-        newTr.className = 'myClass';
-        
-        table.append(tbody)
-        tbody.append(newTr)
-        for(element in obj){
-        newTd = document.createElement("td");
-          newTr.append(newTd);
-          newTd.append(obj[element]);
-          tro = document.querySelectorAll(".myClass");
-        }
-        for(i=0; i<input.length; i++){
-          input[i].value = "";
-        }
-        }else{
-        
-        }
-        
-      }
-      recherche.value = "";
     
+    if(nom.value.length && prenom.value.length && email.value.length && poste.value.length && numero.value.length && statut.value.length && pays.value.length){
+      if(recherche.value.length){
+        let a = recherche.value
+        axios.put(`http://167.71.45.243:4000/api/employes/${a}?api_key=yfryaep`, obj)
+            .then(function(response){
+              rechargerTableau()
+                alert("Agent Modifier avec succé")
+            })
+            .catch(function(erreurs){
+                alert(erreurs)
+            })
+            btnSupprimer.style.display = "inline";
+          btnModifier.style.display = "inline";
+          btn.textContent = "Ajouter"
+          inputVide()
+      }
+      else{
+        axios.post('http://167.71.45.243:4000/api/employes?api_key=yfryaep', obj)
+    
+            .then(function(response){
+              rechargerTableau()
+                alert("Agent Ajouté avec succé !")
+            })
+            .catch(function(erreurs){
+                alert(erreurs)
+            })
+      }
+      recherche.value = '';
+      tbody.innerHTML ='';
+      btnSupprimer.style.display = "inline";
+      btnModifier.style.display = "inline";
+      btn.textContent = "Ajouter"
+      inputVide()
+  }    
 })
-
 
   btnModifier.addEventListener('click', function(e){
   e.preventDefault();
   if(recherche.value.length){
-    for(i=0; i<tro.length; i++){
-        if(tro[i].cells[0].textContent == recherche.value){
-          for(h=1; h<9; h++){
-            input[h-1].value = tro[i].cells[h].textContent
-          } 
-          btnSupprimer.style.display = "none";
-          btnModifier.style.display = "none";
-          btn.textContent = "Mise à jour"
+    axios.get('http://167.71.45.243:4000/api/employes?api_key=yfryaep').then(function(response){
+      for(i=0; i<response.data.length; i++){
+        if(response.data[i]._id == recherche.value){
+            
+            input[0].value = response.data[i].nom;
+            input[1].value = response.data[i].prenom;
+            input[2].value = response.data[i].email;
+            input[3].value = response.data[i].poste;
+            input[4].value = response.data[i].numeroTelephone;
+            input[5].value = response.data[i].estMarie;
+            input[6].value = response.data[i].pays;
+          
         
       }
+      btnSupprimer.style.display = "none";
+          btnModifier.style.display = "none";
+          btn.textContent = "Mise à jour"
     }
+    })
+    
     
     }
 
   else{
-    alert("Impossible de faire une Modification car le champ recherche est vide")
+    alert("Impossible de faire une modification car le champ matricule est vide")
   }
 })
 
 btnSupprimer.addEventListener('click', function(e){
-  e.preventDefault();
-  if(recherche.value.length){
-    for(i=0; i<tro.length; i++){
-        if(tro[i].cells[0].textContent == recherche.value){
-          if(confirm("Voulez vous vraiment supprimer cet employé? " + tro[i].cells[1].textContent + " " + tro[i].cells[2].textContent)){
-            tbody.removeChild(tro[i]);
+  e.preventDefault(); 
+  axios.get('http://167.71.45.243:4000/api/employes?api_key=yfryaep').then(function(response){
+    if(recherche.value.length){
+      for(i=0; i<response.data.length; i++){
+        if(response.data[i]._id == recherche.value){
+          let a=response.data[i]
+          if(confirm("Voulez-vous vraiment supprimer l'agent " + a.nom + " " + a.prenom)){
+            axios.delete(`http://167.71.45.243:4000/api/employes/${a._id}?api_key=yfryaep`)
+              .then(function(response){
+                rechargerTableau()
+                  alert("Agent " + a.nom + " " + a.prenom + " supprimé avec succé")
+              })
+              .catch(function(erreurs){
+                  alert(erreurs)
+              })
           }
-        
-        
+        } 
       }
     }
-    recherche.value = "";
-      
+    else{
+      alert("Impossible de faire une suppresion car le champ matricule est vide")
     }
-
-  
+      recherche.value = '';
+      tbody.innerHTML ='';
+      inputVide() 
+    
+  }) 
 })
+
+
