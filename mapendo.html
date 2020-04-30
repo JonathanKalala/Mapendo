@@ -16,45 +16,78 @@
                   <div class="two fields">
                     <div class="field">
                       <label>Nom</label>
-                      <input placeholder="ex : KALALA" type="text" id="nom">
+                      <input placeholder="ex : KALALA" type="text" id="nom" class="input">
+                      <span id="spanNom"></span>
                     </div>
                     <div class="field">
                       <label>Prenom</label>
-                      <input placeholder="ex : Jonathan" type="text" id="prenom"> <br>
+                      <input placeholder="ex : Jonathan" type="text" id="prenom" class="input"> <br>
+                      <span id="spanPrenom"></span>
                     </div>
                     <div class="field">
                         <label>Email</label>
-                        <input placeholder="Jonkal38@gmail.com" type="text" id="email"> <br>
+                        <input placeholder="Jonkal38@gmail.com" type="text" id="email" class="input"> <br>
+                        <span id="spanEmail"></span>
                       </div>
                       <div class="field">
                         <label>Age</label>
-                        <input placeholder="ex: 25" type="text" id="age"> <br>
+                        <input placeholder="ex: 25" type="number" id="age" list="browsers" class="input"> <br>
+                        
+                        <span id="spanAge"></span>
                       </div>
                       <div class="field">
                         <label>Poste</label>
-                        <input placeholder="ex: Directeur" type="text" id="poste"> <br>
+                        <!-- <input placeholder="ex: Directeur" type="text" id="poste"> <br> -->
+                        <select name="poste" id="poste" class="input">
+                          <option value="dg">dg</option>
+                          <option value="sec">sec</option>
+                          <option value="chef d'equipe">chef d'equipe</option>
+                        </select>
+                        <span id="spanPoste"></span>
                       </div>
                       <div class="field">
                         <label>Numero de telephone</label>
-                        <input placeholder="+243852282012" type="text" id="numero"> <br>
+                        <input placeholder="+243852282012" type="TEL" id="numero" class="input"> <br>
+                        <span id="spanNumero"></span>
                       </div>
                       <div class="field">
                         <label>Statut marital</label>
-                        <input placeholder="ex : Celibataire" type="text" id="statut"> <br>
+                        <!-- <input placeholder="ex : Celibataire" type="text" id="statut"> <br> -->
+                        <select name="poste" id="statut" class="input">
+                          <option value="Celibataire">Celibataire</option>
+                          <option value="Marie">Marie</option>
+                        </select>
+                        <span id="spanStatut"></span>
                       </div>
                       <div class="field">
                         <label>Pays d'origine</label>
-                        <input placeholder="ex : Canada" type="text" id="pays"> <br>
+                        <!-- <input placeholder="ex : Canada" type="text" id="pays"> <br> -->
+                        <select name="poste" id="pays" class="input">
+                          <optgroup label="Afique">
+                            <option value="RDC">RDC</option>
+                            <option value="Egypte">Egypte</option>
+                            <option value="Rwanda">Rwanda</option>
+                          </optgroup>
+                          <optgroup label="Europe">
+                            <option value="France">France</option>
+                            <option value="Belgique">Belgique</option>
+                            <option value="Suisse">Suisse</option>
+                          </optgroup>
+                          <optgroup label="Amerique">
+                            <option value="Canada">Canada</option>
+                            <option value="Mexique">Mexique</option>
+                            <option value="Argentine">Argentine</option>
+                          </optgroup>
+                        </select>
+                        <span id="spanPays"></span>
                       </div>
                   </div>
-                  <div class="inline field">
-                    <div class="ui checkbox">
-                      <input type="checkbox" tabindex="0" class="hidden">
-                      <label>Termine ?</label>
-                    </div>
-                  </div>
+                  <input type="search" style="width: 100px;" name="recherche" id="recherche" placeholder="ex: 12">
+                  <label for="recherche">Veuillez saisir le matricule de l'agent pour modifier ou supprimer </label>
                   <div>
                     <button class="ui submit button" id="bouton">Ajouter</button>
+                    <button class="ui submit button" id="boutonModifier">Modifier</button>
+                    <button class="ui submit button" id="boutonSupprimer">Supprimer</button>
                   </div>
                 </div>
               </div>
@@ -62,6 +95,7 @@
     </div>
     <table border="1">
         <tr>
+            <th>Id</th>
             <th>Nom</th>
             <th>Prenom</th>
             <th>Email</th>
@@ -69,7 +103,7 @@
             <th>Poste</th>
             <th>Numero</th>
             <th>Statut</th>
-            <th>Pays d'àrigine</th>
+            <th>Pays d'orgine</th>
 
         </tr>
     </table>

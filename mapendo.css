@@ -8,9 +8,20 @@ tr{
 }
 th{
     width: 12%;
+    background-color: rgba(244, 165, 96, 0.377);
+    font-size: 15px;
+}
+td{
+    background-color: rgb(109, 93, 80);
 }
 
 table{
-    border: 1px solid green;
+    border: 1px solid black;
     width: 100%;
+    border-collapse: collapse;
+    background-color: rgb(109, 93, 80);
+}
+
+td{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
